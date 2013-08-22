@@ -11,12 +11,12 @@ ZSH_THEME='wedisagree'
  alias gs="git status"
  alias gco="git checkout"
  alias gd="git diff"
- alias gc="git commit"
+ alias gc="git commit -m "
  alias ga="get add"
  alias gps="git push origin master"
  alias gp="git pull origin master"
  alias rdc="bundle exec rails dbconsole"
-
+ alias glp='git log --color --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold yellow)<%an>%Creset'\'' --abbrev-commit --'
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
@@ -55,3 +55,6 @@ export RUBY_HEAP_SLOTS_INCREMENT=1000000
 export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 export RUBY_GC_MALLOC_LIMIT=100000000
 ###########
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
