@@ -16,11 +16,12 @@ filetype plugin indent on
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""[CUSTOM PLUGINS]
 
 " My plugins:
+Bundle 'EasyMotion'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'Rename2'
 Bundle 'Sass'
 Bundle 'Tabular'
-Bundle 'slim-template/vim-slim'
+Bundle 'ack.vim'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'croaker/mustang-vim'
 Bundle 'csv.vim'
@@ -32,33 +33,38 @@ Bundle 'fugitive.vim'
 Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'less.vim'
 Bundle 'scrooloose/nerdtree'
+Bundle 'slim-template/vim-slim'
+Bundle 'snipMate'
 Bundle 'splitjoin.vim'
 Bundle 'surround.vim'
 Bundle 'tComment'
 Bundle 'tpope/vim-rails'
 Bundle 'unimpaired.vim'
 Bundle 'vim-coffee-script'
-Bundle 'EasyMotion'
+Bundle 'hdima/python-syntax'
+Bundle 'yaymukund/vim-rabl'
+Bundle 'flazz/vim-colorschemes'
+Bundle 'chriskempson/base16-vim'
+Bundle 'xolox/vim-colorscheme-switcher'
+Bundle 'xolox/vim-misc'
 Bundle 'thoughtbot/vim-rspec'
 Bundle 'tpope/vim-dispatch'
-Bundle 'tpope/vim-fugitive'
-Bundle 'rking/ag.vim'
-Bundle 'tomorrow-theme'
+Bundle 'rizzatti/funcoo.vim'
+Bundle 'rizzatti/dash.vim'
+Bundle 'elixir-lang/vim-elixir'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""[COLORSCHEME]
 
-colorscheme mustang
+" Solarized
+set background=light
+colorscheme solarized
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""[STATIC FLAGS]
-" Ignore backspace and delete keys
-:inoremap <BS> <Nop>
-:inoremap <Del> <Nop>
-
 " Don't make a backup before overwriting a file
 set nobackup
 set nowritebackup
 
-" Show cursor position all the time
+" Show cursor osition all the time
 set ruler
 
 " Show incomplete commands
@@ -130,6 +136,8 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""[LET]
 
 let mapleader = " "
+" Rspec.vim
+let g:rspec_command = "Dispatch spring rspec {spec} --format progress"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""[AUTO COMMANDS]
 
@@ -165,24 +173,6 @@ map <c-k> <c-w>k
 map <c-h> <c-w>h
 map <c-l> <c-w>l
 
-" Resizing windows
-nnoremap <S-K> <C-W>+
-nnoremap <S-J> <C-W>-
-nnoremap <S-L> <C-W><
-nnoremap <S-H> <C-W>>
-
-" Closing windows
-nnoremap <C-C>l <C-W>l:q<CR>
-nnoremap <C-C>h <C-W>h:q<CR>
-nnoremap <C-C>j <C-W>j:q<CR>
-nnoremap <C-C>k <C-W>k:q<CR>
-
-" vim-rscpec mappings
-let g:rspec_command = "Dispatch rspec {spec}"
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac. j is <A-j>.
 " Some troubles with terminal.
 nnoremap j ddp
@@ -200,7 +190,40 @@ if has("mac") || has("macunix")
   vmap <D-k> <M-k>
 endif
 
-let g:ackprg = 'ag --nogroup --nocolor --column'
+" RSpec.vim mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+
+
+"====[ Make the 81st column stand out ]====================
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v', 100)
+"
+"=====[ Highlight matches when jumping to next ]=============
+" This rewires n and N to do the highlighing...
+nnoremap <silent> n   n:call HLNext(0.4)<cr>
+nnoremap <silent> N   N:call HLNext(0.4)<cr>
+
+function! HLNext (blinktime)
+  highlight BlackOnBlack ctermfg=black ctermbg=black
+  let [bufnum, lnum, col, off] = getpos('.')
+  let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+  let hide_pat = '\%<'.lnum.'l.'
+        \ . '\|'
+        \ . '\%'.lnum.'l\%<'.col.'v.'
+        \ . '\|'
+        \ . '\%'.lnum.'l\%>'.(col+matchlen-1).'v.'
+        \ . '\|'
+        \ . '\%>'.lnum.'l.'
+  let ring = matchadd('BlackOnBlack', hide_pat, 101)
+  redraw
+  exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+  call matchdelete(ring)
+  redraw
+endfunction
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""[LOAD PLUGIN SPECIFIC SETTINGS]
 
 for f in split(glob('~/.vim/settings/*.vim'), '\n')
