@@ -5,5 +5,7 @@ if has("syntax")
   au BufNewFile,BufRead *.jsonify set filetype=ruby
   au BufNewFile,BufRead *.skim    set filetype=slim
   au BufNewFile,BufRead *.slim    set filetype=slim
+  au BufNewFile,BufRead *.ast     set filetype=slim
   au BufNewFile,BufRead *.yml     set filetype=yaml
+  au BufNewFile,BufRead *.aht     set filetype=haml
 endif

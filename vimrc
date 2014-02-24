@@ -23,16 +23,12 @@ Bundle 'Sass'
 Bundle 'Tabular'
 Bundle 'ack.vim'
 Bundle 'cakebaker/scss-syntax.vim'
-Bundle 'croaker/mustang-vim'
-Bundle 'csv.vim'
 Bundle 'ctrlp.vim'
 Bundle 'cucumber.zip'
 Bundle 'ecomba/vim-ruby-refactoring'
 Bundle 'endwise.vim'
 Bundle 'fugitive.vim'
-Bundle 'jistr/vim-nerdtree-tabs'
 Bundle 'less.vim'
-Bundle 'scrooloose/nerdtree'
 Bundle 'slim-template/vim-slim'
 Bundle 'snipMate'
 Bundle 'splitjoin.vim'
@@ -41,17 +37,13 @@ Bundle 'tComment'
 Bundle 'tpope/vim-rails'
 Bundle 'unimpaired.vim'
 Bundle 'vim-coffee-script'
-Bundle 'hdima/python-syntax'
 Bundle 'yaymukund/vim-rabl'
-Bundle 'flazz/vim-colorschemes'
-Bundle 'chriskempson/base16-vim'
-Bundle 'xolox/vim-colorscheme-switcher'
 Bundle 'xolox/vim-misc'
 Bundle 'thoughtbot/vim-rspec'
 Bundle 'tpope/vim-dispatch'
-Bundle 'rizzatti/funcoo.vim'
-Bundle 'rizzatti/dash.vim'
-Bundle 'elixir-lang/vim-elixir'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'scrooloose/nerdtree'
+Bundle 'jistr/vim-nerdtree-tabs'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""[COLORSCHEME]
 
@@ -229,3 +221,8 @@ endfunction
 for f in split(glob('~/.vim/settings/*.vim'), '\n')
   exe 'source' f
 endfor
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""[Thyme app]
+nmap <leader>z :!thyme -d<cr>
+nmap <leader>Z :!thyme -s<cr>

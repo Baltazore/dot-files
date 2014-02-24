@@ -54,7 +54,7 @@ alias glp="git log --color --graph --pretty=format:'''%Cred%h%Creset -%C(yellow)
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(ruby bundle rails postgres)
+plugins=(ruby bundle rails postgres vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 export EDITOR='vim'
@@ -76,3 +76,7 @@ alias tmux="TERM=screen-256color-bce tmux"
 eval "$(direnv hook zsh)"
 
 export rvmsudo_secure_path=1
+
+# Fix NERDTree troubles
+export LC_ALL=en_US.utf-8
+export LANG="$LC_ALL"
