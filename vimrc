@@ -225,4 +225,5 @@ endfor
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""[Thyme app]
 nmap <leader>z :!thyme -d<cr>
-nmap <leader>Z :!thyme -s<cr>
+nmap <leader>x :!thyme -b<cr>
+nmap <leader>c :e ~/.thyme-todo.md<cr>
