@@ -1,3 +1,5 @@
+require 'thread'
+
 set :timer, 25*60
 set :interval, 1
 set :tmux, true
@@ -14,7 +16,9 @@ end
 
 before do
   `killall mplayer`
-  `mplayer -loop 150  ~/.tick.mp3 &`
+  Thread.new do
+    `mplayer -loop 150  ~/.tick.mp3 &`
+  end
 end
 
 after do
