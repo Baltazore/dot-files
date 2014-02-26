@@ -1,5 +1,4 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""[VUNDLE SETTINGS]
-
 set nocompatible               " be iMproved
 filetype on                   " required!
 
@@ -17,11 +16,11 @@ filetype plugin indent on
 
 " My plugins:
 Bundle 'EasyMotion'
-Bundle 'Lokaltog/vim-powerline'
+Bundle 'bling/vim-airline'
 Bundle 'Rename2'
 Bundle 'Sass'
 Bundle 'Tabular'
-Bundle 'ack.vim'
+Bundle 'rking/ag.vim'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle 'ctrlp.vim'
 Bundle 'cucumber.zip'
@@ -75,11 +74,11 @@ nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
 "" HISTORY
-set history=50                           " Commands amount kept in the history list
+set history=500                           " Commands amount kept in the history list
 set undodir=~/.vim/undodir
 set undofile
-set undolevels=50
-set undoreload=50
+set undolevels=500
+set undoreload=500
 
 "" OTHER
 set ai                                    " Autoindent new lines
@@ -89,7 +88,7 @@ set clipboard=unnamed                     " Default copy goes to system clipboar
 set directory=$HOME/.vim/tmp//,.          " Keep swap files in one location
 set expandtab                             " User spaces instead of tabs
 set fencs=utf-8,cp1251,koi8-r,ucs-2,cp866 " Order of file encoding recognition attempts
-set ffs=unix,dos,mac                      " Order of line endings recognition attempts
+set ffs=unix,mac,dos                      " Order of line endings recognition attempts
 set foldlevel=20
 set foldlevelstart=20
 set foldmethod=syntax                     " Set block-to-fold determination method set hidden
@@ -227,3 +226,23 @@ endfor
 nmap <leader>z :!thyme -d<cr>
 nmap <leader>x :!thyme -b<cr>
 nmap <leader>c :e ~/.thyme-todo.md<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""[ VIM AirLine ]
+set laststatus=2
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'

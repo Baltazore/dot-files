@@ -13,8 +13,11 @@ option :t, :today, 'open today sheet' do
 end
 
 before do
+  `killall mplayer`
+  `mplayer -loop 150  ~/.tick.mp3 &`
 end
 
-after do |seconds_left|
+after do
+  `killall mplayer`
   `mplayer ~/.alarm.mp3 &`
 end
