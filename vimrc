@@ -1,56 +1,63 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""[VUNDLE SETTINGS]
-set nocompatible               " be iMproved
-filetype on                   " required!
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
+" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" let Vundle manage Vundle
-" required!
+" let Vundle manage Vundle, required
 Bundle 'gmarik/vundle'
 
-syntax enable      " Turn on syntax highlighting
-filetype plugin indent on
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""[CUSTOM PLUGINS]
-
-" My plugins:
-Bundle 'EasyMotion'
+Bundle 'L9'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-rails.git'
 Bundle 'bling/vim-airline'
-Bundle 'Rename2'
-Bundle 'Sass'
-Bundle 'Tabular'
-Bundle 'rking/ag.vim'
-Bundle 'cakebaker/scss-syntax.vim'
-Bundle 'ctrlp.vim'
-Bundle 'cucumber.zip'
-Bundle 'ecomba/vim-ruby-refactoring'
-Bundle 'endwise.vim'
-Bundle 'fugitive.vim'
-Bundle 'less.vim'
-Bundle 'slim-template/vim-slim'
-Bundle 'snipMate'
-Bundle 'splitjoin.vim'
-Bundle 'surround.vim'
-Bundle 'tComment'
-Bundle 'tpope/vim-rails'
-Bundle 'unimpaired.vim'
-Bundle 'vim-coffee-script'
-Bundle 'yaymukund/vim-rabl'
-Bundle 'xolox/vim-misc'
-Bundle 'thoughtbot/vim-rspec'
-Bundle 'tpope/vim-dispatch'
-Bundle 'altercation/vim-colors-solarized'
+Bundle 'airblade/vim-gitgutter'
+" SnipMate
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "garbas/vim-snipmate"
+Bundle "honza/vim-snippets"
+
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""[COLORSCHEME]
+Bundle 'kien/ctrlp.vim'
+Bundle 'vim-scripts/tComment'
+Bundle 'rking/ag.vim'
+Bundle 'tpope/vim-surround'
+Bundle 'godlygeek/tabular'
+Bundle 'ecomba/vim-ruby-refactoring'
+Bundle 'tpope/vim-haml'
+Bundle 'tpope/vim-rake'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'mutewinter/nginx.vim'
+Bundle 'mutewinter/vim-css3-syntax'
+Bundle 'tpope/vim-cucumber'
+Bundle 'tpope/vim-endwise'
+Bundle 'slim-template/vim-slim'
+Bundle 'yaymukund/vim-rabl'
+Bundle 'AndrewRadev/splitjoin.vim'
+Bundle 'lmeijvogel/vim-yaml-helper'
+Bundle 'tpope/vim-dispatch'
+Bundle 'scrooloose/syntastic'
+Bundle 'mattn/emmet-vim'
+Bundle 'christoomey/vim-tmux-runner'
+Bundle 'jgdavey/tslime.vim'
+Bundle 'jgdavey/vim-turbux'
 
-" Solarized
+filetype plugin indent on     " required
+
+syntax enable
 set background=light
 colorscheme solarized
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""[STATIC FLAGS]
+" Appear all time VIM AirLine
+set laststatus=2
+" let AirLine use PowerLine fonts
+let g:airline_powerline_fonts = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""[STATIC FLAGS]
 " Don't make a backup before overwriting a file
 set nobackup
 set nowritebackup
@@ -61,12 +68,6 @@ set ruler
 " Show incomplete commands
 set showcmd
 
-" Don't use Ex mode, use Q for formatting
-map Q gq
-
-" Maps autocomplete to tab
-imap <Tab> <C-N>
-
 " Echo on arrow keys
 nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
@@ -74,11 +75,11 @@ nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
 "" HISTORY
-set history=500                           " Commands amount kept in the history list
+set history=5000                           " Commands amount kept in the history list
 set undodir=~/.vim/undodir
 set undofile
-set undolevels=500
-set undoreload=500
+set undolevels=5000
+set undoreload=5000
 
 "" OTHER
 set ai                                    " Autoindent new lines
@@ -118,19 +119,17 @@ set wildmenu                              " Enhanced command line completion
 set wildmode=list:longest                 " Complete files like a shell
 set wrap                                  " Turn on line wrapping
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""[CONDITIONAL FLAGS]
+"""""""""""""""""""""""""""""""""""""""""""""""""""[CONDITIONAL FLAGS]
 
 if !has('gui_running')
   set mouse=
 endif
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""[LET]
+"""""""""""""""""""""""""""""""""""""""""""""""""""[LET]
 
 let mapleader = " "
-" Rspec.vim
-let g:rspec_command = "Dispatch spring rspec {spec} --format progress"
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""[AUTO COMMANDS]
+"""""""""""""""""""""""""""""""""""""""""""""""""""[AUTO COMMANDS]
 
 function TrimWhiteSpace()
   %s/\s*$//
@@ -142,14 +141,7 @@ autocmd FileAppendPre * :call TrimWhiteSpace()
 autocmd FilterWritePre * :call TrimWhiteSpace()
 autocmd BufWritePre * :call TrimWhiteSpace()
 
-" Only for GUI version
-autocmd FocusLost * :wa
-autocmd FocusLost * silent! wa
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""[MAPPINGS]
-
-vmap <Tab> >gv
-vmap <S-Tab> <gv
+"""""""""""""""""""""""""""""""""""""""""""""""""""[MAPPINGS]
 
 inoremap kj <Esc>l
 
@@ -181,68 +173,92 @@ if has("mac") || has("macunix")
   vmap <D-k> <M-k>
 endif
 
-" RSpec.vim mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
+" Smart movement
+nnoremap j gj
+nnoremap k gk
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""[PLUGINS]
+" NERDTree
+map <C-N> :NERDTreeTabsToggle<CR>
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeWinSize = 40
+let g:nerdtree_tabs_focus_on_files = 1
+let g:nerdtree_tabs_autoclose = 1
+map <Leader>n :NERDTreeTabsToggle<CR>
 
-"====[ Make the 81st column stand out ]====================
-highlight ColorColumn ctermbg=magenta
-call matchadd('ColorColumn', '\%81v', 100)
-"
-"=====[ Highlight matches when jumping to next ]=============
-" This rewires n and N to do the highlighing...
-nnoremap <silent> n   n:call HLNext(0.4)<cr>
-nnoremap <silent> N   N:call HLNext(0.4)<cr>
+"CtrlP
+map <Leader>p :CtrlPMRUFiles<CR>
+map <Leader>r :CtrlPClearCache<CR>
+let g:ctrlp_map = '<C-P>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_match_window_reversed = 0
+let g:ctrlp_extensions = ['tag']
+let g:ctrlp_custom_ignore = '\.git$'
 
-function! HLNext (blinktime)
-  highlight BlackOnBlack ctermfg=black ctermbg=black
-  let [bufnum, lnum, col, off] = getpos('.')
-  let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
-  let hide_pat = '\%<'.lnum.'l.'
-        \ . '\|'
-        \ . '\%'.lnum.'l\%<'.col.'v.'
-        \ . '\|'
-        \ . '\%'.lnum.'l\%>'.(col+matchlen-1).'v.'
-        \ . '\|'
-        \ . '\%>'.lnum.'l.'
-  let ring = matchadd('BlackOnBlack', hide_pat, 101)
-  redraw
-  exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
-  call matchdelete(ring)
-  redraw
+" Ag
+" Find (define word)
+nmap <leader>fw :Ag ""  --ignore-dir=log --ignore-dir=public --ignore-dir=coverage --ignore-dir=tmp --ignore-dir=vendor\assets\images --ignore-dir=.git
+" Find (define directory)
+nmap <leader>fd :Ag ""  --ignore-dir=log --ignore-dir=public --ignore-dir=coverage --ignore-dir=tmp --ignore-dir=vendor\assets\images --ignore-dir=.git
+" Instant find with word and directory predefined
+nmap <leader>ff :Ag "" --ignore-dir=log --ignore-dir=public --ignore-dir=coverage --ignore-dir=tmp --ignore-dir=vendor\assets\images --ignore-dir=.git <CR>
+
+" Ruby Refactoring
+nnoremap <leader>rap  :RAddParameter<cr>
+nnoremap <leader>rcpc :RConvertPostConditional<cr>
+nnoremap <leader>rel  :RExtractLet<cr>
+vnoremap <leader>rec  :RExtractConstant<cr>
+vnoremap <leader>relv :RExtractLocalVariable<cr>
+nnoremap <leader>rit  :RInlineTemp<cr>
+vnoremap <leader>rrlv :RRenameLocalVariable<cr>
+vnoremap <leader>rriv :RRenameInstanceVariable<cr>
+vnoremap <leader>rem  :RExtractMethod<cr>
+
+" SplitJoin
+nmap sjj :SplitjoinJoin<CR>
+nmap sjs :SplitjoinSplit<CR>
+
+" Emmet
+let g:user_emmet_install_global = 0
+autocmd FileType html,haml,slim,css EmmetInstall
+
+" Ctags
+nnoremap <leader>. :CtrlPTag<cr>
+
+" Tabular
+nmap <Leader>t{char} :Tabularize /{char}<CR>
+vmap <Leader>t{char} :Tabularize /{char}<CR>
+
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
 endfunction
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""[LOAD PLUGIN SPECIFIC SETTINGS]
+"""""""""""""""""""""""""""""""""""""""""""""""""""[FyleType]
+if has("syntax")
+  au BufNewFile,BufRead *.coffee  set filetype=coffee
+  au BufNewFile,BufRead *.js      set filetype=javascript
+  au BufNewFile,BufRead *.rb      set filetype=ruby
+  au BufNewFile,BufRead *.jsonify set filetype=ruby
+  au BufNewFile,BufRead *.skim    set filetype=slim
+  au BufNewFile,BufRead *.slim    set filetype=slim
+  au BufNewFile,BufRead *.ast     set filetype=slim
+  au BufNewFile,BufRead *.yml     set filetype=yaml
+  au BufNewFile,BufRead *.aht     set filetype=haml
+endif
 
-for f in split(glob('~/.vim/settings/*.vim'), '\n')
-  exe 'source' f
-endfor
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""[Thyme app]
+"""""""""""""""""""""""""""""""""""""""""""""""""""[Thyme app]
 nmap <leader>z :!thyme -d<cr>
 nmap <leader>x :!thyme -b<cr>
 nmap <leader>c :e ~/.thyme-todo.md<cr>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""[ VIM AirLine ]
-set laststatus=2
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
 
-" unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
