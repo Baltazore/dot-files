@@ -12,7 +12,7 @@ Bundle 'L9'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rails.git'
 Bundle 'bling/vim-airline'
-Bundle 'airblade/vim-gitgutter'
+" Bundle 'airblade/vim-gitgutter'
 " SnipMate
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
@@ -22,6 +22,7 @@ Bundle "honza/vim-snippets"
 Bundle 'scrooloose/nerdtree'
 Bundle 'jistr/vim-nerdtree-tabs'
 
+Bundle 'tpope/vim-sensible'
 Bundle 'kien/ctrlp.vim'
 Bundle 'vim-scripts/tComment'
 Bundle 'rking/ag.vim'
@@ -39,12 +40,13 @@ Bundle 'slim-template/vim-slim'
 Bundle 'yaymukund/vim-rabl'
 Bundle 'AndrewRadev/splitjoin.vim'
 Bundle 'lmeijvogel/vim-yaml-helper'
-Bundle 'tpope/vim-dispatch'
-Bundle 'scrooloose/syntastic'
+" Bundle 'scrooloose/syntastic'
 Bundle 'mattn/emmet-vim'
+" Bundle 'tpope/vim-dispatch'
 Bundle 'christoomey/vim-tmux-runner'
 Bundle 'jgdavey/tslime.vim'
 Bundle 'jgdavey/vim-turbux'
+Bundle 'jelera/vim-javascript-syntax'
 
 filetype plugin indent on     " required
 
@@ -118,6 +120,8 @@ set wildignore+=*/.git/*,*/tmp/*,*/log/*,*/app/assets/images/*,*/vendor/assets/i
 set wildmenu                              " Enhanced command line completion
 set wildmode=list:longest                 " Complete files like a shell
 set wrap                                  " Turn on line wrapping
+set cursorline cursorcolumn               " Highlight cursor line and column
+set colorcolumn=81                        " Highlight 81 column
 
 """""""""""""""""""""""""""""""""""""""""""""""""""[CONDITIONAL FLAGS]
 
@@ -179,7 +183,7 @@ nnoremap k gk
 
 """""""""""""""""""""""""""""""""""""""""""""""""""[PLUGINS]
 " NERDTree
-map <C-N> :NERDTreeTabsToggle<CR>
+map <C-N> :NERDTreeFind<CR>
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeWinSize = 40
 let g:nerdtree_tabs_focus_on_files = 1
@@ -243,6 +247,12 @@ function! s:align()
   endif
 endfunction
 
+" Turbux
+let g:no_turbux_mappings = 1
+map <leader>S <Plug>SendTestToTmux
+map <leader>s <Plug>SendFocusedTestToTmux
+let g:turbux_command_rspec = 'spring rspec '
+
 """""""""""""""""""""""""""""""""""""""""""""""""""[FyleType]
 if has("syntax")
   au BufNewFile,BufRead *.coffee  set filetype=coffee
@@ -251,14 +261,20 @@ if has("syntax")
   au BufNewFile,BufRead *.jsonify set filetype=ruby
   au BufNewFile,BufRead *.skim    set filetype=slim
   au BufNewFile,BufRead *.slim    set filetype=slim
-  au BufNewFile,BufRead *.ast     set filetype=slim
+  au BufNewFile,BufRead *.ngslim  set filetype=slim
   au BufNewFile,BufRead *.yml     set filetype=yaml
-  au BufNewFile,BufRead *.aht     set filetype=haml
+  au BufNewFile,BufRead *.nghaml  set filetype=haml
 endif
 
+autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
+autocmd Filetype coffeescript setlocal ts=4 sts=4 sw=4
 """""""""""""""""""""""""""""""""""""""""""""""""""[Thyme app]
 nmap <leader>z :!thyme -d<cr>
 nmap <leader>x :!thyme -b<cr>
 nmap <leader>c :e ~/.thyme-todo.md<cr>
 
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""[Configs per project in .vimrc]
+set exrc
+set secure
+"""""""""""""""""""""""""""""""""""""""""""""""""""[JavaScript Code Folfing]
+au FileType javascript call JavaScriptFold()
