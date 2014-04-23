@@ -51,7 +51,6 @@ Bundle 'jelera/vim-javascript-syntax'
 filetype plugin indent on     " required
 
 syntax enable
-set background=light
 colorscheme solarized
 
 " Appear all time VIM AirLine
@@ -278,3 +277,10 @@ set exrc
 set secure
 """""""""""""""""""""""""""""""""""""""""""""""""""[JavaScript Code Folfing]
 au FileType javascript call JavaScriptFold()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""[Switch vim colors]
+" <F3>
+" toggle between dark and light backgrounds
+nnoremap <silent><F3> :let &background=(&background == "dark"?"light":"dark")<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""[JSON format]
+nmap <leader>= :%!python -m json.tool<cr>
