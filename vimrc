@@ -52,6 +52,7 @@ filetype plugin indent on     " required
 
 syntax enable
 colorscheme solarized
+set background=light
 
 " Appear all time VIM AirLine
 set laststatus=2
@@ -266,7 +267,7 @@ if has("syntax")
 endif
 
 autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
-autocmd Filetype coffeescript setlocal ts=4 sts=4 sw=4
+autocmd Filetype coffee setlocal ts=4 sts=4 sw=4
 """""""""""""""""""""""""""""""""""""""""""""""""""[Thyme app]
 nmap <leader>z :!thyme -d<cr>
 nmap <leader>x :!thyme -b<cr>
