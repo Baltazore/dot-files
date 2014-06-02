@@ -52,6 +52,7 @@ filetype plugin indent on     " required
 
 syntax enable
 colorscheme solarized
+set background=light
 
 " Appear all time VIM AirLine
 set laststatus=2
@@ -76,11 +77,11 @@ nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
 "" HISTORY
-set history=5000                           " Commands amount kept in the history list
+set history=500                           " Commands amount kept in the history list
 set undodir=~/.vim/undodir
 set undofile
-set undolevels=5000
-set undoreload=5000
+set undolevels=500
+set undoreload=500
 
 "" OTHER
 set ai                                    " Autoindent new lines
@@ -139,10 +140,6 @@ function TrimWhiteSpace()
   ''
 endfunction
 
-autocmd FileWritePre * :call TrimWhiteSpace()
-autocmd FileAppendPre * :call TrimWhiteSpace()
-autocmd FilterWritePre * :call TrimWhiteSpace()
-autocmd BufWritePre * :call TrimWhiteSpace()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""[MAPPINGS]
 
@@ -266,7 +263,7 @@ if has("syntax")
 endif
 
 autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
-autocmd Filetype coffeescript setlocal ts=4 sts=4 sw=4
+autocmd Filetype coffee setlocal ts=4 sts=4 sw=4
 """""""""""""""""""""""""""""""""""""""""""""""""""[Thyme app]
 nmap <leader>z :!thyme -d<cr>
 nmap <leader>x :!thyme -b<cr>
