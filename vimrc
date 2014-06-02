@@ -77,11 +77,11 @@ nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
 "" HISTORY
-set history=5000                           " Commands amount kept in the history list
+set history=500                           " Commands amount kept in the history list
 set undodir=~/.vim/undodir
 set undofile
-set undolevels=5000
-set undoreload=5000
+set undolevels=500
+set undoreload=500
 
 "" OTHER
 set ai                                    " Autoindent new lines
@@ -140,10 +140,6 @@ function TrimWhiteSpace()
   ''
 endfunction
 
-autocmd FileWritePre * :call TrimWhiteSpace()
-autocmd FileAppendPre * :call TrimWhiteSpace()
-autocmd FilterWritePre * :call TrimWhiteSpace()
-autocmd BufWritePre * :call TrimWhiteSpace()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""[MAPPINGS]
 
