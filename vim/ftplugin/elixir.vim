@@ -23,3 +23,5 @@ endif
 
 setlocal comments=:#
 setlocal commentstring=#\ %s
+
+map <leader>s :!mix test<Cr>
