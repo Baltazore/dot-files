@@ -63,6 +63,9 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 [[ -n "${key[Up]}"      ]] && bindkey  "${key[Up]}"      history-beginning-search-backward
 [[ -n "${key[Down]}"    ]] && bindkey  "${key[Down]}"    history-beginning-search-forward
 
+bindkey "^[[A" history-search-backward
+bindkey "^[[B" history-search-forward
+
 #for rvm
 export RUBY_GC_HEAP_INIT_SLOTS=1000000
 export RUBY_HEAP_FREE_MIN=500000
