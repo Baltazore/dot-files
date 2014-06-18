@@ -4,3 +4,6 @@
 
 # And new file as well
 # @oivoodoo it's awesome
+#
+# TODO:
+# - [ ] add multiline suport
