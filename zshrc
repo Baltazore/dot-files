@@ -5,9 +5,10 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="ys"
+# ZSH_THEME="robbyrussell"
 # ZSH_THEME="wedisagree"
-# ZSH_THEME="random"
+ZSH_THEME="sonicradish"
 # Example aliases
 alias gs="git status"
 alias gco="git checkout"
@@ -58,7 +59,6 @@ plugins=(ruby bundle rails postgres vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 export EDITOR='vim'
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 [[ -n "${key[Up]}"      ]] && bindkey  "${key[Up]}"      history-beginning-search-backward
 [[ -n "${key[Down]}"    ]] && bindkey  "${key[Down]}"    history-beginning-search-forward
@@ -66,20 +66,21 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
 
-#for rvm
-export RUBY_GC_HEAP_INIT_SLOTS=1000000
-export RUBY_HEAP_FREE_MIN=500000
-export RUBY_HEAP_SLOTS_INCREMENT=1000000
-export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
-export RUBY_GC_MALLOC_LIMIT=100000000
-
+# Ruby tweaks for GC
+RUBY_HEAP_MIN_SLOTS=500000
+RUBY_HEAP_SLOTS_INCREMENT=250000
+RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
+RUBY_GC_MALLOC_LIMIT=50000000
+#
 # Customize to your needs...
 export PATH=/usr/local/bin:$PATH
 alias tmux="TERM=screen-256color-bce tmux"
 eval "$(direnv hook zsh)"
 
-export rvmsudo_secure_path=1
-
 # Fix NERDTree troubles
 export LC_ALL=en_US.utf-8
 export LANG="$LC_ALL"
+
+[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # This loads NVM
+# Rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi

@@ -12,7 +12,6 @@ Bundle 'L9'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-rails.git'
 Bundle 'bling/vim-airline'
-" Bundle 'airblade/vim-gitgutter'
 " SnipMate
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
@@ -40,9 +39,7 @@ Bundle 'slim-template/vim-slim'
 Bundle 'yaymukund/vim-rabl'
 Bundle 'AndrewRadev/splitjoin.vim'
 Bundle 'lmeijvogel/vim-yaml-helper'
-" Bundle 'scrooloose/syntastic'
 Bundle 'mattn/emmet-vim'
-" Bundle 'tpope/vim-dispatch'
 Bundle 'christoomey/vim-tmux-runner'
 Bundle 'jgdavey/tslime.vim'
 Bundle 'jgdavey/vim-turbux'
@@ -52,7 +49,13 @@ filetype plugin indent on     " required
 
 syntax enable
 colorscheme solarized
-set background=light
+
+" Launch vim with light background during the day and dark at night.
+if strftime("%H") >= 7 && strftime("%H") <= 18
+  set background=light
+else
+  set background=dark
+endif
 
 " Appear all time VIM AirLine
 set laststatus=2
@@ -198,7 +201,7 @@ let g:ctrlp_custom_ignore = '\.git$'
 
 " Ag
 " Find (define word)
-nmap <leader>fw :Ag ""  --ignore-dir=log --ignore-dir=public --ignore-dir=coverage --ignore-dir=tmp --ignore-dir=vendor\assets\images --ignore-dir=.git
+nmap <leader>fw :Ag ""  --ignore-dir=log --ignore-dir=coverage --ignore-dir=tmp --ignore-dir=vendor\assets\images --ignore-dir=.git
 " Find (define directory)
 nmap <leader>fd :Ag ""  --ignore-dir=log --ignore-dir=public --ignore-dir=coverage --ignore-dir=tmp --ignore-dir=vendor\assets\images --ignore-dir=.git
 " Instant find with word and directory predefined
