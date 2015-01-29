@@ -2,49 +2,45 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin('~/.vim/bundle')
 
 " let Vundle manage Vundle, required
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'L9'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rails.git'
+Plugin 'bling/vim-airline'
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'tpope/vim-sensible'
+Plugin 'kien/ctrlp.vim'
+Plugin 'vim-scripts/tComment'
+Plugin 'rking/ag.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'godlygeek/tabular'
+Plugin 'ecomba/vim-ruby-refactoring'
+Plugin 'tpope/vim-haml'
+Plugin 'tpope/vim-rake'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'mutewinter/nginx.vim'
+Plugin 'mutewinter/vim-css3-syntax'
+Plugin 'tpope/vim-cucumber'
+Plugin 'tpope/vim-endwise'
+Plugin 'slim-template/vim-slim'
+Plugin 'yaymukund/vim-rabl'
+Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'lmeijvogel/vim-yaml-helper'
+Plugin 'mattn/emmet-vim'
+Plugin 'christoomey/vim-tmux-runner'
+Plugin 'jgdavey/tslime.vim'
+Plugin 'jgdavey/vim-turbux'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'wakatime/vim-wakatime'
+Plugin 'elixir-lang/vim-elixir'
 
-Bundle 'L9'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-rails.git'
-Bundle 'bling/vim-airline'
-" SnipMate
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "garbas/vim-snipmate"
-Bundle "honza/vim-snippets"
-
-Bundle 'scrooloose/nerdtree'
-Bundle 'jistr/vim-nerdtree-tabs'
-
-Bundle 'tpope/vim-sensible'
-Bundle 'kien/ctrlp.vim'
-Bundle 'vim-scripts/tComment'
-Bundle 'rking/ag.vim'
-Bundle 'tpope/vim-surround'
-Bundle 'godlygeek/tabular'
-Bundle 'ecomba/vim-ruby-refactoring'
-Bundle 'tpope/vim-haml'
-Bundle 'tpope/vim-rake'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'mutewinter/nginx.vim'
-Bundle 'mutewinter/vim-css3-syntax'
-Bundle 'tpope/vim-cucumber'
-Bundle 'tpope/vim-endwise'
-Bundle 'slim-template/vim-slim'
-Bundle 'yaymukund/vim-rabl'
-Bundle 'AndrewRadev/splitjoin.vim'
-Bundle 'lmeijvogel/vim-yaml-helper'
-Bundle 'mattn/emmet-vim'
-Bundle 'christoomey/vim-tmux-runner'
-Bundle 'jgdavey/tslime.vim'
-Bundle 'jgdavey/vim-turbux'
-Bundle 'jelera/vim-javascript-syntax'
-
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
 filetype plugin indent on     " required
 
 syntax enable
