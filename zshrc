@@ -1,4 +1,5 @@
 # Path to your oh-my-zsh configuration.
+#
 ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
@@ -55,23 +56,16 @@ alias glp="git log --color --graph --pretty=format:'''%Cred%h%Creset -%C(yellow)
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(ruby bundle rails postgres vi-mode)
+plugins=(postgres vi-mode bgnotify)
+
+bgnotify_threshold=10
 
 source $ZSH/oh-my-zsh.sh
 export EDITOR='vim'
 
-[[ -n "${key[Up]}"      ]] && bindkey  "${key[Up]}"      history-beginning-search-backward
-[[ -n "${key[Down]}"    ]] && bindkey  "${key[Down]}"    history-beginning-search-forward
-
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
 
-# Ruby tweaks for GC
-RUBY_HEAP_MIN_SLOTS=500000
-RUBY_HEAP_SLOTS_INCREMENT=250000
-RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
-RUBY_GC_MALLOC_LIMIT=50000000
-#
 # Customize to your needs...
 export PATH=/usr/local/bin:$PATH
 alias tmux="TERM=screen-256color-bce tmux"
@@ -81,6 +75,9 @@ eval "$(direnv hook zsh)"
 export LC_ALL=en_US.utf-8
 export LANG="$LC_ALL"
 
-[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # This loads NVM
+# NVM
+export NVM_DIR="/Users/baltazore/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 # Rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+

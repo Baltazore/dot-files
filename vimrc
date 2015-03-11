@@ -11,6 +11,7 @@ Plugin 'L9'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rails.git'
 Plugin 'bling/vim-airline'
+Plugin 'vim-ruby/vim-ruby'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'tpope/vim-sensible'
@@ -24,7 +25,7 @@ Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-rake'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'mutewinter/nginx.vim'
-Plugin 'mutewinter/vim-css3-syntax'
+Plugin 'hail2u/vim-css3-syntax'
 Plugin 'tpope/vim-cucumber'
 Plugin 'tpope/vim-endwise'
 Plugin 'slim-template/vim-slim'
@@ -38,6 +39,8 @@ Plugin 'jgdavey/vim-turbux'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'wakatime/vim-wakatime'
 Plugin 'elixir-lang/vim-elixir'
+Plugin 'tpope/vim-markdown'
+Plugin 'tpope/vim-bundler'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -131,6 +134,9 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""[LET]
 
 let mapleader = " "
+let ruby_space_errors = 1
+let c_space_errors = 1
+let elixir_space_errors = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""[AUTO COMMANDS]
 
@@ -250,15 +256,17 @@ let g:turbux_command_rspec = 'spring rspec '
 
 """""""""""""""""""""""""""""""""""""""""""""""""""[FyleType]
 if has("syntax")
-  au BufNewFile,BufRead *.coffee  set filetype=coffee
-  au BufNewFile,BufRead *.js      set filetype=javascript
-  au BufNewFile,BufRead *.rb      set filetype=ruby
-  au BufNewFile,BufRead *.jsonify set filetype=ruby
-  au BufNewFile,BufRead *.skim    set filetype=slim
-  au BufNewFile,BufRead *.slim    set filetype=slim
-  au BufNewFile,BufRead *.ngslim  set filetype=slim
-  au BufNewFile,BufRead *.yml     set filetype=yaml
-  au BufNewFile,BufRead *.nghaml  set filetype=haml
+  au BufNewFile,BufRead *.coffee    set filetype=coffee
+  au BufNewFile,BufRead *.js        set filetype=javascript
+  au BufNewFile,BufRead *.rb        set filetype=ruby
+  au BufNewFile,BufRead *.jsonify   set filetype=ruby
+  au BufNewFile,BufRead *.skim      set filetype=slim
+  au BufNewFile,BufRead *.slim      set filetype=slim
+  au BufNewFile,BufRead *.ngslim    set filetype=slim
+  au BufNewFile,BufRead *.yml       set filetype=yaml
+  au BufNewFile,BufRead *.nghaml    set filetype=haml
+  au BufNewFile,BufRead *.md        set filetype=markdown
+  au BufNewFile,BufRead *.markdown  set filetype=markdown
 endif
 
 autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
