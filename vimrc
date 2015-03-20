@@ -41,6 +41,7 @@ Plugin 'wakatime/vim-wakatime'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-bundler'
+Plugin 'dsawardekar/ember.vim'
 Plugin 'editorconfig/editorconfig-vim'
 
 " All of your Plugins must be added before the following line
