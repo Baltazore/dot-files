@@ -81,3 +81,4 @@ export NVM_DIR="/Users/baltazore/.nvm"
 # Rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
+export PATH="/usr/local/sbin:$PATH"

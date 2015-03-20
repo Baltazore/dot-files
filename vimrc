@@ -41,6 +41,7 @@ Plugin 'wakatime/vim-wakatime'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-bundler'
+Plugin 'editorconfig/editorconfig-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -124,6 +125,17 @@ set wildmode=list:longest                 " Complete files like a shell
 set wrap                                  " Turn on line wrapping
 set cursorline cursorcolumn               " Highlight cursor line and column
 set colorcolumn=81                        " Highlight 81 column
+set nojoinspaces                          " Use only 1 space after "." when joining lines instead of 2
+
+" Improve vim's scrolling speed
+set ttyfast
+set ttyscroll=3
+set lazyredraw
+
+set undofile                    " Save undo's after file closes
+set undodir=~/.vim/undo         " where to save undo histories
+set undolevels=1000             " How many undos
+set undoreload=10000            " number of lines to save for undo
 
 """""""""""""""""""""""""""""""""""""""""""""""""""[CONDITIONAL FLAGS]
 
@@ -136,7 +148,7 @@ endif
 let mapleader = " "
 let ruby_space_errors = 1
 let c_space_errors = 1
-let elixir_space_errors = 1
+let g:vim_tags_auto_generate = 0 " Disable tag generation on file save
 
 """""""""""""""""""""""""""""""""""""""""""""""""""[AUTO COMMANDS]
 
