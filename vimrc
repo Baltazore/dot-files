@@ -42,6 +42,7 @@ Plugin 'elixir-lang/vim-elixir'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-bundler'
 Plugin 'dsawardekar/ember.vim'
+Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'editorconfig/editorconfig-vim'
 
 " All of your Plugins must be added before the following line
@@ -53,9 +54,9 @@ colorscheme solarized
 
 " Launch vim with light background during the day and dark at night.
 if strftime("%H") >= 7 && strftime("%H") <= 18
-  set background=light
-else
   set background=dark
+else
+  set background=light
 endif
 
 " Appear all time VIM AirLine
@@ -239,7 +240,11 @@ nmap sjs :SplitjoinSplit<CR>
 
 " Emmet
 let g:user_emmet_install_global = 0
-autocmd FileType html,haml,slim,css EmmetInstall
+let g:user_emmet_expandabbr_key = '<C-y>'
+autocmd FileType html,haml,slim,html.handlebars,css EmmetInstall
+
+" Handlebars
+let g:mustache_abbreviations = 1
 
 " Ctags
 nnoremap <leader>. :CtrlPTag<cr>
@@ -280,10 +285,11 @@ if has("syntax")
   au BufNewFile,BufRead *.nghaml    set filetype=haml
   au BufNewFile,BufRead *.md        set filetype=markdown
   au BufNewFile,BufRead *.markdown  set filetype=markdown
+  au BufNewFile,BufRead *.dryml     set filetype=html
 endif
 
 autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
-autocmd Filetype coffee setlocal ts=4 sts=4 sw=4
+autocmd Filetype coffee setlocal ts=2 sts=2 sw=2
 """""""""""""""""""""""""""""""""""""""""""""""""""[Thyme app]
 nmap <leader>z :!thyme -d<cr>
 nmap <leader>x :!thyme -b<cr>

@@ -56,7 +56,7 @@ alias glp="git log --color --graph --pretty=format:'''%Cred%h%Creset -%C(yellow)
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(postgres vi-mode bgnotify)
+plugins=(postgres vi-mode bgnotify ember-cli)
 
 bgnotify_threshold=10
 
