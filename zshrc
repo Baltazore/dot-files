@@ -22,6 +22,7 @@ alias rdc="bundle exec rails dbconsole"
 alias rs="bundle exec rails server"
 alias rc="bundle exec rails console"
 alias glp="git log --color --graph --pretty=format:'''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold yellow)<%an>%Creset'"
+alias tmux="TERM=xterm-256color tmux"
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -68,16 +69,14 @@ bindkey "^[[B" history-search-forward
 
 # Customize to your needs...
 export PATH=/usr/local/bin:$PATH
-alias tmux="TERM=screen-256color-bce tmux"
 eval "$(direnv hook zsh)"
 
 # Fix NERDTree troubles
 export LC_ALL=en_US.utf-8
 export LANG="$LC_ALL"
 
-# NVM
-export NVM_DIR="/Users/baltazore/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+#NPM
+export PATH="$PATH:$HOME/.node/bin"
 # Rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 

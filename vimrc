@@ -29,13 +29,12 @@ Plugin 'hail2u/vim-css3-syntax'
 Plugin 'tpope/vim-cucumber'
 Plugin 'tpope/vim-endwise'
 Plugin 'slim-template/vim-slim'
-Plugin 'yaymukund/vim-rabl'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'lmeijvogel/vim-yaml-helper'
 Plugin 'mattn/emmet-vim'
-Plugin 'christoomey/vim-tmux-runner'
 Plugin 'jgdavey/tslime.vim'
 Plugin 'jgdavey/vim-turbux'
+Plugin 'pangloss/vim-javascript'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'wakatime/vim-wakatime'
 Plugin 'elixir-lang/vim-elixir'
@@ -44,21 +43,30 @@ Plugin 'tpope/vim-bundler'
 Plugin 'dsawardekar/ember.vim'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'editorconfig/editorconfig-vim'
+" Snippets
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+
+" Colors
+Plugin 'jnurmine/Zenburn'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on     " required
 
 syntax enable
-colorscheme solarized
-
-" Launch vim with light background during the day and dark at night.
-if strftime("%H") >= 7 && strftime("%H") <= 18
-  set background=dark
-else
-  set background=light
-endif
-
+colorscheme zenburn
+" colorscheme solarized
+"
+" " Launch vim with light background during the day and dark at night.
+" if strftime("%H") >= 7 && strftime("%H") <= 18
+"   set background=dark
+" else
+"   set background=light
+" endif
+"
 " Appear all time VIM AirLine
 set laststatus=2
 " let AirLine use PowerLine fonts
@@ -241,7 +249,7 @@ nmap sjs :SplitjoinSplit<CR>
 " Emmet
 let g:user_emmet_install_global = 0
 let g:user_emmet_expandabbr_key = '<C-y>'
-autocmd FileType html,haml,slim,html.handlebars,css EmmetInstall
+autocmd FileType html,haml,slim,html.handlebars,.hbs,css EmmetInstall
 
 " Handlebars
 let g:mustache_abbreviations = 1
@@ -288,6 +296,10 @@ if has("syntax")
   au BufNewFile,BufRead *.dryml     set filetype=html
 endif
 
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+autocmd FileType css setlocal iskeyword+=-
 autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
 autocmd Filetype coffee setlocal ts=2 sts=2 sw=2
 """""""""""""""""""""""""""""""""""""""""""""""""""[Thyme app]
@@ -298,8 +310,6 @@ nmap <leader>c :e ~/.thyme-todo.md<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""[Configs per project in .vimrc]
 set exrc
 set secure
-"""""""""""""""""""""""""""""""""""""""""""""""""""[JavaScript Code Folfing]
-au FileType javascript call JavaScriptFold()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""[Switch vim colors]
 " <F3>
@@ -307,3 +317,14 @@ au FileType javascript call JavaScriptFold()
 nnoremap <silent><F3> :let &background=(&background == "dark"?"light":"dark")<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""[JSON format]
 nmap <leader>= :%!python -m json.tool<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""[Tmux configs]
+" tmux will only forward escape sequences to the terminal if surrounded by a DCS sequence
+" http://sourceforge.net/mailarchive/forum.php?thread_name=AANLkTinkbdoZ8eNR1X2UobLTeww1jFrvfJxTMfKSq-L%2B%40mail.gmail.com&forum_name=tmux-users
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
