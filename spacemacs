@@ -46,6 +46,7 @@
      )
 
    ruby-version-manager 'rbenv
+   ruby-enable-ruby-on-rails-support t
 
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
