@@ -43,6 +43,7 @@
      html
      markdown
      shell-script
+     osx
      )
 
    ruby-version-manager 'rbenv
