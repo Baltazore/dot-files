@@ -57,16 +57,15 @@ call vundle#end()            " required
 filetype plugin indent on     " required
 
 syntax enable
-colorscheme zenburn
-" colorscheme solarized
-"
-" " Launch vim with light background during the day and dark at night.
-" if strftime("%H") >= 7 && strftime("%H") <= 18
+" colorscheme zenburn
+colorscheme solarized
+" Launch vim with light background during the day and dark at night.
+" if strftime("%H") >= 5 && strftime("%H") <= 21
 "   set background=dark
 " else
-"   set background=light
+  set background=light
 " endif
-"
+
 " Appear all time VIM AirLine
 set laststatus=2
 " let AirLine use PowerLine fonts
@@ -124,7 +123,7 @@ set showmatch
 set showmode                              " Display mode you're in
 set smartcase                             " Case sensitive search if any uppercased character presents in the search phrase
 set sts=2                                 " Amount of spaces per tab
-set t_Co=256                              " Set color depth
+" set t_Co=256                              " Set color depth
 set tabstop=2                             " Global tab width
 set timeoutlen=500                        " Autoindent new lines
 set title                                 " Set the terminal's title

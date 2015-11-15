@@ -6,10 +6,9 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-# ZSH_THEME="ys"
 # ZSH_THEME="robbyrussell"
-# ZSH_THEME="wedisagree"
-ZSH_THEME="sonicradish"
+# ZSH_THEME="sonicradish"
+ZSH_THEME="honukai"
 # Example aliases
 alias gs="git status"
 alias gco="git checkout"
@@ -22,7 +21,9 @@ alias rdc="bundle exec rails dbconsole"
 alias rs="bundle exec rails server"
 alias rc="bundle exec rails console"
 alias glp="git log --color --graph --pretty=format:'''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold yellow)<%an>%Creset'"
-alias tmux="TERM=xterm-256color tmux"
+
+alias emacs="ITERM_24BIT=1 emacs"
+alias mb="cd projects/mb/"
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
