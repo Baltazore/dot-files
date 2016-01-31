@@ -36,7 +36,6 @@ Plugin 'jgdavey/tslime.vim'
 Plugin 'jgdavey/vim-turbux'
 Plugin 'pangloss/vim-javascript'
 Plugin 'jelera/vim-javascript-syntax'
-Plugin 'wakatime/vim-wakatime'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-bundler'
@@ -51,6 +50,7 @@ Plugin 'honza/vim-snippets'
 
 " Colors
 Plugin 'jnurmine/Zenburn'
+Plugin 'sickill/vim-monokai'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -58,7 +58,8 @@ filetype plugin indent on     " required
 
 syntax enable
 " colorscheme zenburn
-colorscheme solarized
+colorscheme monokai
+" colorscheme solarized
 " Launch vim with light background during the day and dark at night.
 " if strftime("%H") >= 5 && strftime("%H") <= 21
 "   set background=dark
