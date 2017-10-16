@@ -1,4 +1,5 @@
-# Example aliases
+# example aliases
+alias rc="bundle exec rails console"
 alias gs="git status"
 alias gco="git checkout"
 alias gd="git diff"
@@ -8,7 +9,6 @@ alias gps="git push"
 alias gpl="git pull --rebase"
 alias rdc="bundle exec rails dbconsole"
 alias rs="bundle exec rails server"
-alias rc="bundle exec rails console"
 alias glp="git log --color --graph --pretty=format:'''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold yellow)<%an>%Creset'"
 
 alias emacs="ITERM_24BIT=1 emacs"

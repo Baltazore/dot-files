@@ -8,39 +8,38 @@ call vundle#begin('~/.vim/bundle')
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 Plugin 'L9'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rails.git'
+
 Plugin 'bling/vim-airline'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'tpope/vim-sensible'
-Plugin 'kien/ctrlp.vim'
-Plugin 'vim-scripts/tComment'
+
 Plugin 'rking/ag.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'godlygeek/tabular'
-Plugin 'ecomba/vim-ruby-refactoring'
-Plugin 'tpope/vim-haml'
-Plugin 'tpope/vim-rake'
-Plugin 'kchmck/vim-coffee-script'
+
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-rails.git'
+Plugin 'tpope/vim-cucumber'
+Plugin 'tpope/vim-markdown'
 Plugin 'mutewinter/nginx.vim'
 Plugin 'hail2u/vim-css3-syntax'
-Plugin 'tpope/vim-cucumber'
-Plugin 'tpope/vim-endwise'
 Plugin 'slim-template/vim-slim'
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'lmeijvogel/vim-yaml-helper'
 Plugin 'mattn/emmet-vim'
 Plugin 'jgdavey/tslime.vim'
-Plugin 'jgdavey/vim-turbux'
 Plugin 'pangloss/vim-javascript'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'elixir-lang/vim-elixir'
-Plugin 'tpope/vim-markdown'
-Plugin 'tpope/vim-bundler'
-Plugin 'dsawardekar/ember.vim'
 Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'dsawardekar/ember.vim'
+
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-endwise'
+Plugin 'szw/vim-maximizer'
+Plugin 'godlygeek/tabular'
+Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'editorconfig/editorconfig-vim'
 " Snippets
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -64,7 +63,7 @@ colorscheme monokai
 " if strftime("%H") >= 5 && strftime("%H") <= 21
 "   set background=dark
 " else
-  set background=light
+"   set background=light
 " endif
 
 " Appear all time VIM AirLine
@@ -90,7 +89,7 @@ nnoremap <Up> :echoe "Use k"<CR>
 nnoremap <Down> :echoe "Use j"<CR>
 
 "" HISTORY
-set history=500                           " Commands amount kept in the history list
+set history=100                           " Commands amount kept in the history list
 set undodir=~/.vim/undodir
 set undofile
 set undolevels=500
@@ -124,7 +123,7 @@ set showmatch
 set showmode                              " Display mode you're in
 set smartcase                             " Case sensitive search if any uppercased character presents in the search phrase
 set sts=2                                 " Amount of spaces per tab
-" set t_Co=256                              " Set color depth
+set t_Co=256                              " Set color depth
 set tabstop=2                             " Global tab width
 set timeoutlen=500                        " Autoindent new lines
 set title                                 " Set the terminal's title
@@ -206,7 +205,7 @@ nnoremap k gk
 
 """""""""""""""""""""""""""""""""""""""""""""""""""[PLUGINS]
 " NERDTree
-map <C-N> :NERDTreeFind<CR>
+map <Leader>ft :NERDTreeFind<CR>
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeWinSize = 40
 let g:nerdtree_tabs_focus_on_files = 1
@@ -230,17 +229,6 @@ nmap <leader>fw :Ag ""  --ignore-dir=log --ignore-dir=coverage --ignore-dir=tm
 nmap <leader>fd :Ag ""  --ignore-dir=log --ignore-dir=public --ignore-dir=coverage --ignore-dir=tmp --ignore-dir=vendor\assets\images --ignore-dir=.git
 " Instant find with word and directory predefined
 nmap <leader>ff :Ag "" --ignore-dir=log --ignore-dir=public --ignore-dir=coverage --ignore-dir=tmp --ignore-dir=vendor\assets\images --ignore-dir=.git <CR>
-
-" Ruby Refactoring
-nnoremap <leader>rap  :RAddParameter<cr>
-nnoremap <leader>rcpc :RConvertPostConditional<cr>
-nnoremap <leader>rel  :RExtractLet<cr>
-vnoremap <leader>rec  :RExtractConstant<cr>
-vnoremap <leader>relv :RExtractLocalVariable<cr>
-nnoremap <leader>rit  :RInlineTemp<cr>
-vnoremap <leader>rrlv :RRenameLocalVariable<cr>
-vnoremap <leader>rriv :RRenameInstanceVariable<cr>
-vnoremap <leader>rem  :RExtractMethod<cr>
 
 " SplitJoin
 nmap sjj :SplitjoinJoin<CR>
@@ -274,12 +262,6 @@ function! s:align()
   endif
 endfunction
 
-" Turbux
-let g:no_turbux_mappings = 1
-map <leader>S <Plug>SendTestToTmux
-map <leader>s <Plug>SendFocusedTestToTmux
-let g:turbux_command_rspec = 'spring rspec '
-
 """""""""""""""""""""""""""""""""""""""""""""""""""[FyleType]
 if has("syntax")
   au BufNewFile,BufRead *.coffee    set filetype=coffee
@@ -300,13 +282,8 @@ autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType css setlocal iskeyword+=-
-autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
+autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd Filetype coffee setlocal ts=2 sts=2 sw=2
-"""""""""""""""""""""""""""""""""""""""""""""""""""[Thyme app]
-nmap <leader>z :!thyme -d<cr>
-nmap <leader>x :!thyme -b<cr>
-nmap <leader>c :e ~/.thyme-todo.md<cr>
-
 """""""""""""""""""""""""""""""""""""""""""""""""""[Configs per project in .vimrc]
 set exrc
 set secure
@@ -318,13 +295,35 @@ nnoremap <silent><F3> :let &background=(&background == "dark"?"light":"dark")<CR
 """""""""""""""""""""""""""""""""""""""""""""""""""[JSON format]
 nmap <leader>= :%!python -m json.tool<cr>
 
-""""""""""""""""""""""""""""""""""""""""""""""""""[Tmux configs]
-" tmux will only forward escape sequences to the terminal if surrounded by a DCS sequence
-" http://sourceforge.net/mailarchive/forum.php?thread_name=AANLkTinkbdoZ8eNR1X2UobLTeww1jFrvfJxTMfKSq-L%2B%40mail.gmail.com&forum_name=tmux-users
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
+""""""""""""""""""""""""""""""""""""""""""""""""""[Spacemacs bindings]
+nmap <LEADER><TAB> <C-^>
+nmap <LEADER>;; :Commentary<CR>
+vmap <LEADER>; :Commentary<CR>
+nmap <LEADER>bb :buffers<CR>
+nmap <LEADER>bd :bdelete<CR>
+nmap <LEADER>bR :e<CR>
+nmap <LEADER>fed :e ~/.vimrc<CR>
+nmap <LEADER>feR :source ~/.vimrc<CR>
+nmap <LEADER>ff :CtrlPCurFile<CR>
+nmap <LEADER>fr :CtrlPMRU<CR>
+nmap <LEADER>fs :w<CR>
+nmap <LEADER>fS :wa<CR>
+nmap <LEADER>ft :NERDTreeToggle<CR>
+nmap <LEADER>gb :Gblame<CR>
+nmap <LEADER>gd :Gdiff<CR>
+nmap <LEADER>gs :Gstatus<CR>
+nmap <LEADER>pf :CtrlPRoot<CR>
+nmap <LEADER>pt :call spacemacs#toggleExplorerAtRoot()<CR>
+nmap <LEADER>qq :qa<CR>
+nmap <LEADER>sp :Ag<SPACE>
+nmap <LEADER>tn :set number!<CR>
+nmap <LEADER>w- :sp<CR>
+nmap <LEADER>w/ :vsp<CR>
+nmap <LEADER>w= <C-W>=
+nmap <LEADER>wc :q<CR>
+nmap <LEADER>wh <C-W>h
+nmap <LEADER>wj <C-W>j
+nmap <LEADER>wk <C-W>k
+nmap <LEADER>wl <C-W>l
+nmap <LEADER>wm :MaximizerToggle<CR>
+nmap <LEADER>ww <C-W><C-W>
