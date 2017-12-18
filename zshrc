@@ -1,4 +1,8 @@
-# Load promptinit and awesome prom[t
+source /usr/local/share/antigen/antigen.zsh
+antigen bundle zsh-users/zsh-history-substring-search
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen apply
+
 autoload -U promptinit; promptinit
 prompt pure
 
@@ -26,25 +30,20 @@ alias gpl="git pull --rebase"
 alias rdc="bundle exec rails dbconsole"
 alias rs="bundle exec rails server"
 alias glp="git log --color --graph --pretty=format:'''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold yellow)<%an>%Creset'"
+alias code="code-insiders"
 
 export EDITOR='vim'
 export PATH=/usr/local/sbin:$PATH
-
-# Customize to your needs...
-# eval "$(direnv hook zsh)"
 
 # Postgres.app
 # export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
 
 # Fix NERDTree troubles
-export LC_ALL=en_US.utf-8
-export LANG="$LC_ALL"
+# export LC_ALL=en_US.utf-8
+# export LANG="$LC_ALL"
 
 # Rbenv
 # if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
