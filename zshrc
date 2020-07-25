@@ -1,10 +1,11 @@
 source /usr/local/share/antigen/antigen.zsh
 antigen bundle zsh-users/zsh-history-substring-search
 antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle horosgrisa/autoenv
 antigen apply
 
 autoload -U promptinit; promptinit
-prompt pure
+eval "$(starship init zsh)"
 
 # This gives normal completion behaviour
 zstyle ':completion:*' completer _complete
@@ -18,8 +19,6 @@ HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
 
-# example aliases
-alias rc="bundle exec rails console"
 alias gs="git status"
 alias gco="git checkout"
 alias gd="git diff"
@@ -27,23 +26,10 @@ alias gc="git commit --verbose"
 alias ga="git add ."
 alias gps="git push"
 alias gpl="git pull --rebase"
-alias rdc="bundle exec rails dbconsole"
-alias rs="bundle exec rails server"
 alias glp="git log --color --graph --pretty=format:'''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold yellow)<%an>%Creset'"
-alias code="code-insiders"
 
-export EDITOR='vim'
+export EDITOR='nvim'
 export PATH=/usr/local/sbin:$PATH
-
-# Postgres.app
-# export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
-
-# Fix NERDTree troubles
-# export LC_ALL=en_US.utf-8
-# export LANG="$LC_ALL"
-
-# Rbenv
-# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
@@ -53,5 +39,10 @@ docker_cleanup(){
   docker rmi $(docker images --filter dangling=true -q 2>/dev/null) 2>/dev/null
 }
 
-. $HOME/.asdf/asdf.sh
-. $HOME/.asdf/completions/asdf.bash
+restart_bluetooth(){
+  sudo kextunload -b com.apple.iokit.BroadcomBluetoothHostControllerUSBTransport
+  sudo kextload -b com.apple.iokit.BroadcomBluetoothHostControllerUSBTransport
+}
+
+export VOLTA_HOME="/Users/kirillshaplyko/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
